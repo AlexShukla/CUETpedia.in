@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Home, BookOpen, GraduationCap, Users, Info, Menu, X, ArrowRight, CheckCircle, Lightbulb, TrendingUp, FileText, BellRing, ClipboardCheck, FileQuestion, Star, Eye, Award, MessageSquare, Library, Shield, ScrollText, CalendarDays, ClipboardList, FileBadge } from 'lucide-react';
+import {
+  Search, Home, BookOpen, GraduationCap, Users, Info, Menu, X, ArrowRight,
+  CheckCircle, Lightbulb, TrendingUp, FileText, BellRing, ClipboardCheck,
+  FileQuestion, Star, Eye, Award, MessageSquare, Library, Shield, ScrollText,
+  CalendarDays, ClipboardList, FileBadge, LogIn, // Added LogIn icon
+  // Social media icons - Corrected imports for Telegram and Whatsapp
+  Send, Instagram // Removed X as TwitterX as it's no longer needed for the X icon
+} from 'lucide-react';
 
 const App = () => {
   const [activeSection, setActiveSection] = useState('home');
@@ -53,6 +60,12 @@ const App = () => {
     setShowSearchModal(false); // Close search modal on navigation
   };
 
+  // Handler for login button click
+  const handleLogin = () => {
+    setSearchMessage('Login functionality is coming soon!');
+    setShowSearchModal(true);
+  };
+
   // Custom CSS for the glass effect
   const glassEffectStyle = {
     backdropFilter: 'blur(10px) saturate(180%)',
@@ -82,8 +95,8 @@ const App = () => {
             </p>
             <button
               onClick={() => navigateTo('syllabus')}
-              // Reverted to previous size and color
-              className="inline-flex items-center px-8 md:px-10 py-3 md:py-3.5 bg-white text-blue-700 font-bold text-lg rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ease-in-out group"
+              // Changed rounded-full to rounded-3xl for less curve
+              className="inline-flex items-center px-8 md:px-10 py-3 md:py-3.5 bg-white text-blue-700 font-bold text-lg rounded-3xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ease-in-out group"
             >
               Explore Syllabus <ArrowRight className="ml-3 group-hover:translate-x-1 transition-transform" size={20} />
             </button>
@@ -307,7 +320,7 @@ const App = () => {
             </div>
           </div>
 
-          {/* Comprehensive Resource Library - Reverted to static content */}
+          {/* Comprehensive Resource Library */}
           <div className="bg-white p-8 md:p-12 rounded-3xl shadow-xl" style={glassEffectStyle}>
             <h3 className="text-3xl md:text-4xl font-extrabold text-gray-800 text-center mb-8 md:mb-10">Comprehensive Resource Library</h3>
             <div className="flex flex-col md:flex-row items-center justify-center gap-8">
@@ -691,41 +704,49 @@ const App = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-4">
+          <nav className="hidden md:flex space-x-1 items-center"> {/* Reduced space-x further */}
             <button
               onClick={() => navigateTo('home')}
-              className={`px-6 py-2 rounded-full font-semibold text-lg transition-all duration-300 ease-in-out ${activeSection === 'home' ? 'bg-white text-blue-700 shadow-md' : 'text-white hover:bg-white hover:bg-opacity-30'}`}
+              className={`px-3 py-1 rounded-full font-semibold text-sm transition-all duration-300 ease-in-out ${activeSection === 'home' ? 'bg-white text-blue-700 shadow-md' : 'text-white hover:bg-white hover:bg-opacity-30'}`}
               style={activeSection !== 'home' ? glassEffectStyle : {}}
             >
-              <Home className="inline-block mr-2" size={20} /> Home
+              <Home className="inline-block mr-1" size={16} /> Home {/* Reduced icon size further */}
             </button>
             <button
               onClick={() => navigateTo('syllabus')}
-              className={`px-6 py-2 rounded-full font-semibold text-lg transition-all duration-300 ease-in-out ${activeSection === 'syllabus' ? 'bg-white text-blue-700 shadow-md' : 'text-white hover:bg-white hover:bg-opacity-30'}`}
+              className={`px-3 py-1 rounded-full font-semibold text-sm transition-all duration-300 ease-in-out ${activeSection === 'syllabus' ? 'bg-white text-blue-700 shadow-md' : 'text-white hover:bg-white hover:bg-opacity-30'}`}
               style={activeSection !== 'syllabus' ? glassEffectStyle : {}}
             >
-              <BookOpen className="inline-block mr-2" size={20} /> Syllabus
+              <BookOpen className="inline-block mr-1" size={16} /> Syllabus
             </button>
             <button
               onClick={() => navigateTo('universities')}
-              className={`px-6 py-2 rounded-full font-semibold text-lg transition-all duration-300 ease-in-out ${activeSection === 'universities' ? 'bg-white text-blue-700 shadow-md' : 'text-white hover:bg-white hover:bg-opacity-30'}`}
+              className={`px-3 py-1 rounded-full font-semibold text-sm transition-all duration-300 ease-in-out ${activeSection === 'universities' ? 'bg-white text-blue-700 shadow-md' : 'text-white hover:bg-white hover:bg-opacity-30'}`}
               style={activeSection !== 'universities' ? glassEffectStyle : {}}
             >
-              <GraduationCap className="inline-block mr-2" size={20} /> Universities
+              <GraduationCap className="inline-block mr-1" size={16} /> Universities
             </button>
             <button
               onClick={() => navigateTo('about')}
-              className={`px-6 py-2 rounded-full font-semibold text-lg transition-all duration-300 ease-in-out ${activeSection === 'about' ? 'bg-white text-blue-700 shadow-md' : 'text-white hover:bg-white hover:bg-opacity-30'}`}
+              className={`px-3 py-1 rounded-full font-semibold text-sm transition-all duration-300 ease-in-out ${activeSection === 'about' ? 'bg-white text-blue-700 shadow-md' : 'text-white hover:bg-white hover:bg-opacity-30'}`}
               style={activeSection !== 'about' ? glassEffectStyle : {}}
             >
-              <Info className="inline-block mr-2" size={20} /> About
+              <Info className="inline-block mr-1" size={16} /> About
             </button>
             <button
               onClick={() => navigateTo('contact')}
-              className={`px-6 py-2 rounded-full font-semibold text-lg transition-all duration-300 ease-in-out ${activeSection === 'contact' ? 'bg-white text-blue-700 shadow-md' : 'text-white hover:bg-white hover:bg-opacity-30'}`}
+              className={`px-3 py-1 rounded-full font-semibold text-sm transition-all duration-300 ease-in-out ${activeSection === 'contact' ? 'bg-white text-blue-700 shadow-md' : 'text-white hover:bg-white hover:bg-opacity-30'}`}
               style={activeSection !== 'contact' ? glassEffectStyle : {}}
             >
-              <Users className="inline-block mr-2" size={20} /> Contact
+              <Users className="inline-block mr-1" size={16} /> Contact
+            </button>
+            {/* Login Button for Desktop */}
+            <button
+              onClick={handleLogin}
+              className="px-3 py-1 rounded-full font-semibold text-sm text-white bg-blue-500 hover:bg-blue-600 transition-colors duration-300 shadow-md flex items-center"
+              style={glassEffectStyle}
+            >
+              <LogIn className="inline-block mr-1" size={16} /> Login
             </button>
           </nav>
 
@@ -771,6 +792,13 @@ const App = () => {
               >
                 <Users className="inline-block mr-3" size={20} /> Contact
               </button>
+              {/* Login Button for Mobile */}
+              <button
+                onClick={handleLogin}
+                className="block w-full text-left px-5 py-3 rounded-xl font-semibold text-white bg-blue-500 hover:bg-blue-600 transition-colors duration-300 shadow-md flex items-center"
+              >
+                <LogIn className="inline-block mr-3" size={20} /> Login
+              </button>
             </div>
           </nav>
         )}
@@ -815,6 +843,20 @@ const App = () => {
             <button onClick={() => navigateTo('privacyPolicy')} className="text-gray-800 hover:text-blue-700 transition-colors duration-300 text-sm md:text-base">Privacy Policy</button>
             <button onClick={() => navigateTo('termsAndConditions')} className="text-gray-800 hover:text-blue-700 transition-colors duration-300 text-sm md:text-base">Terms and Conditions</button>
             <button onClick={() => navigateTo('contact')} className="text-gray-800 hover:text-blue-700 transition-colors duration-300 text-sm md:text-base">Support</button>
+          </div>
+          {/* Social Media Icons */}
+          <div className="flex justify-center space-x-6 mt-6">
+            <a href="https://t.me/cuetpedia_official" target="_blank" rel="noopener noreferrer" className="text-gray-800 hover:text-blue-600 transition-colors duration-300" title="Join us on Telegram">
+              <Send size={28} /> {/* Used Send icon for Telegram */}
+            </a>
+            <a href="https://instagram.com/cuetpedia_official" target="_blank" rel="noopener noreferrer" className="text-gray-800 hover:text-pink-600 transition-colors duration-300" title="Follow us on Instagram">
+              <Instagram size={28} />
+            </a>
+            {/* WhatsApp icon removed */}
+            <a href="https://x.com/cuetpedia_official" target="_blank" rel="noopener noreferrer" className="text-gray-800 hover:text-black transition-colors duration-300" title="Follow us on X (Twitter)">
+              {/* Unicode X icon */}
+              <span style={{ fontSize: '28px', lineHeight: '1' }}>𝕏</span>
+            </a>
           </div>
           <p className="mt-2">
             Designed with <span className="text-red-500">&hearts;</span> by{' '}
